@@ -1,4 +1,4 @@
-public class Storage implements Observer{
+public class Storage{
     private String storageName;
     private Inventory items;
 
