@@ -1,4 +1,4 @@
-public class Storage {
+public class Storage implements Observer{
     private String storageName;
     private Inventory items;
 
@@ -23,5 +23,6 @@ public class Storage {
         ItemInterface removed = items.remove(item);
         return removed;
     }
+   
     
 }
