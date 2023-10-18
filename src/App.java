@@ -5,7 +5,9 @@ public class App {
     private Storage storage;
     private JFrame frame;
     private PageManager manager;
-
+    private InventoryStratergy stratall;
+    private InventoryStratergy stratname;
+    private InventoryStratergy stratDesc;
     public App(Player p, Storage s) {
         player = p;
         storage = s;
@@ -33,19 +35,20 @@ public class App {
 
     // Task 1: Defining what each button in the UI will do.
     void setupSearching(InventoryPage page) {
-        page.addSearchByButton(new SearchByButton("All", () -> {
-            player.getInventory().setSearch("All");
-            player.getStorageView().setSearch("All");
+      
+        page.addSearchByButton(new SearchByButton(stratall, () -> {
+            player.getInventory().setSearch(stratall);
+            player.getStorageView().setSearch(stratall);
         }));
 
-        page.addSearchByButton(new SearchByButton("Name", () -> {
-            player.getInventory().setSearch("Name");
-            player.getStorageView().setSearch("Name");
+        page.addSearchByButton(new SearchByButton(stratname, () -> {
+            player.getInventory().setSearch(stratname);
+            player.getStorageView().setSearch(stratname);
         }));
 
-        page.addSearchByButton(new SearchByButton("Description", () -> {
-            player.getInventory().setSearch("Description");
-            player.getStorageView().setSearch("Description");
+        page.addSearchByButton(new SearchByButton(stratDesc, () -> {
+            player.getInventory().setSearch(stratDesc);
+            player.getStorageView().setSearch(stratDesc);
         }));
     }
 

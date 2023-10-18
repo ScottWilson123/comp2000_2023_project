@@ -1,9 +1,10 @@
 import java.util.ArrayList;
 import java.util.Optional;
 
-public class Inventory {
+public class Inventory implements InventoryStratergy{
     private ArrayList<ItemInterface> stock;
     private String searchBy;
+    private InventoryStratergy strat;
 
     public Inventory() {
         stock = new ArrayList<>();
@@ -71,9 +72,10 @@ public class Inventory {
         return Optional.empty();
     }
 
-    public void setSearch(String search) {
+    public void setSearch(InventoryStratergy strat) {
         // You may wish to adjust this to facilitate the task 1 strategy pattern
-        searchBy = search;
+        InventoryStratergy search;
+        search = strat;
     }
 
     /**
@@ -83,6 +85,27 @@ public class Inventory {
      * @param searchTerm - Text from the UIs textfield
      * @return a filtered instance copy of the items arraylist
      */
+
+
+@Override
+    public ArrayList<ItemInterface> searchItem(InventoryStratergy search){
+        ArrayList<ItemInterface> result = new ArrayList<>(stock);
+       
+            if(searchBy == "All"){
+            search = new AllStratergy();
+            }
+            else if(searchBy == "Name"){
+            strat = new NameStratergy();
+
+            } else if(searchBy == "Description"){
+            strat = new DescriptionStratergy();
+
+            }
+
+        return result;
+        }
+
+
     public ArrayList<ItemInterface> searchItems(String searchTerm) {
         String term = searchTerm.toLowerCase();
         ArrayList<ItemInterface> result = new ArrayList<>(stock);  // ArrayList copy
@@ -93,6 +116,7 @@ public class Inventory {
                 if (!curItem.getName().contains(term) && !curItem.getDescription().contains(term)) {
                     result.remove(i);
                     i--;  // Go back to revisit current index on next run of loop
+                    
                 }
             }
         } else if (searchBy.equals("Name")) {
