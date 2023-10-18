@@ -3,9 +3,9 @@ import java.util.ArrayList;
 public class AllStratergy implements InventoryStratergy {
     ArrayList<ItemInterface> stock;
     @Override
-    public ArrayList<ItemInterface> searchItem(InventoryStratergy search) {
+    public ArrayList<ItemInterface> searchItems(InventoryStratergy search) {
         stock = new ArrayList<>();
-        String term = "p";
+        String term = "All";
         ArrayList<ItemInterface> result = new ArrayList<>(stock);
 
         for (int i = 0; i < result.size(); i++) {
@@ -16,8 +16,12 @@ public class AllStratergy implements InventoryStratergy {
                 
             }
         }
-        return null;
+        return result;
     
+    }
+    public String Name(String name){
+       name = "All";
+        return name;
     }
     
 

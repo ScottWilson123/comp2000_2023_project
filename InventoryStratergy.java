@@ -2,7 +2,9 @@ import java.util.ArrayList;
 
 public interface InventoryStratergy {
     
-public ArrayList<ItemInterface> searchItem(InventoryStratergy search);
+public ArrayList<ItemInterface> searchItems(InventoryStratergy search);
 
+
+public String Name(String name);
 }
 
