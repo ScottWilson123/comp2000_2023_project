@@ -19,8 +19,5 @@ public class DescriptionStratergy implements InventoryStratergy{
         }
         return result;
     }
-    public String Name(String name){
-        name = "Description";
-         return name;
-     }
+   
 }

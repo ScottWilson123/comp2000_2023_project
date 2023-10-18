@@ -19,10 +19,7 @@ public class AllStratergy implements InventoryStratergy {
         return result;
     
     }
-    public String Name(String name){
-       name = "All";
-        return name;
-    }
+   
     
 
 

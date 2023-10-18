@@ -86,10 +86,7 @@ public class Inventory implements InventoryStratergy{
      * @return a filtered instance copy of the items arraylist
      */
 
-     public String Name(String name){
-        name = "All";
-         return name;
-     }
+    
 @Override
     public ArrayList<ItemInterface> searchItems(InventoryStratergy search){
         ArrayList<ItemInterface> result = new ArrayList<>(stock);
