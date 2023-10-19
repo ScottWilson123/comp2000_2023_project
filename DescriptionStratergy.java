@@ -20,4 +20,9 @@ public class DescriptionStratergy implements InventoryStratergy{
         return result;
     }
    
+    public String toString(){
+
+        return "Description";
+
+    }
 }

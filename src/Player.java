@@ -3,6 +3,8 @@ public class Player {
     private Inventory inventory;
     private double carryWeightCapacity;
     private Inventory storageView;
+    private InventoryStratergy strat = new NameStratergy();
+  
 
     public Player(String playerName, double carryCapacity, Inventory sInventory) {
         name = playerName;
@@ -32,7 +34,7 @@ public class Player {
 
     public double getCurrentWeight() {
         double carrying = 0;
-        for (ItemInterface item : getInventory().searchItems("")) {
+        for (ItemInterface item : getInventory().searchItems(strat.toString())) {
             carrying += item.getWeight();
         }
         return carrying;
@@ -40,7 +42,7 @@ public class Player {
 
     public void store(ItemInterface item, Storage storage) throws ItemNotAvailableException {
         // Do we have the item we are trying to store
-        if (!inventory.searchItems("").contains(item)) {
+        if (!inventory.searchItems(strat.toString()).contains(item)) {
             throw new ItemNotAvailableException(item.getDefinition());
         }
         storage.store(inventory.remove(item));
@@ -48,7 +50,7 @@ public class Player {
 
     public void retrieve(ItemInterface item, Storage storage) throws ItemNotAvailableException, ExceedWeightCapacity {
         // Does the Storage have the item we are trying to retrieve
-        if (!storageView.searchItems("").contains(item)) {
+        if (!storageView.searchItems(strat.toString()).contains(item)) {
             throw new ItemNotAvailableException(item.getDefinition());
         }
         if (getCurrentWeight() + item.getWeight() > getCarryCapacity()) {

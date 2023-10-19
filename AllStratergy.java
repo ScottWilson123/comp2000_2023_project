@@ -20,6 +20,11 @@ public class AllStratergy implements InventoryStratergy {
     
     }
    
+        public String toString(){
+
+            return "All";
+
+        }
     
 
 

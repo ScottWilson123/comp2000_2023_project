@@ -19,5 +19,11 @@ public class NameStratergy implements InventoryStratergy {
         }
         return result;
     }
+
+    public String toString(){
+
+        return "Name";
+
+    }
     
 }

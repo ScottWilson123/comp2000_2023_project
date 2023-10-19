@@ -5,6 +5,10 @@ public class Inventory implements InventoryStratergy{
     private ArrayList<ItemInterface> stock;
     private String searchBy;
     private InventoryStratergy strat;
+    private InventoryStratergy search;
+    private InventoryStratergy searchItem;
+    private InventoryStratergy stratname;
+    private InventoryStratergy stratDesc;
 
     public Inventory() {
         stock = new ArrayList<>();
@@ -74,7 +78,7 @@ public class Inventory implements InventoryStratergy{
 
     public void setSearch(InventoryStratergy strat) {
         // You may wish to adjust this to facilitate the task 1 strategy pattern
-        InventoryStratergy search;
+       
         search = strat;
     }
 
@@ -90,23 +94,27 @@ public class Inventory implements InventoryStratergy{
 @Override
     public ArrayList<ItemInterface> searchItems(InventoryStratergy search){
         ArrayList<ItemInterface> result = new ArrayList<>(stock);
-       
-            if(searchBy == "All"){
-            search = new AllStratergy();
+        searchItem = search;
+        this.strat = new AllStratergy();
+        this.stratname = new NameStratergy();
+        this.stratDesc = new DescriptionStratergy();
+            
+        if(searchItem.equals(strat)){
+            strat = new AllStratergy();
+            System.out.println("help");
             }
-            else if(searchBy == "Name"){
+            else if(searchItem.equals(stratname)){
             strat = new NameStratergy();
-
-            } else if(searchBy == "Description"){
+                    System.out.println("help2");
+            } else if(searchItem.equals(stratDesc)){
             strat = new DescriptionStratergy();
-
+                    System.out.println("help3");
             }
 
         return result;
         }
 
-
-    public ArrayList<ItemInterface> searchItems(String searchTerm) {
+       public ArrayList<ItemInterface> searchItems(String searchTerm) {
         String term = searchTerm.toLowerCase();
         ArrayList<ItemInterface> result = new ArrayList<>(stock);  // ArrayList copy
 
@@ -138,7 +146,9 @@ public class Inventory implements InventoryStratergy{
         }
         return result;
     }
+ 
 
+    
     public int qtyOf(ItemDefinition def) {
         int qty = 0;
         for (ItemInterface item : stock) {
