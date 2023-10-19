@@ -5,7 +5,7 @@ public class NameStratergy implements InventoryStratergy {
     ArrayList<ItemInterface> stock;
 
     @Override
-    public ArrayList<ItemInterface> searchItems(InventoryStratergy search) {
+    public void searchStrat(InventoryStratergy search) {
         stock = new ArrayList<>();
         String term = "All";
         ArrayList<ItemInterface> result = new ArrayList<>(stock);
@@ -17,7 +17,7 @@ public class NameStratergy implements InventoryStratergy {
                 i--;  // Go back to revisit current index on next run of loop
             }
         }
-        return result;
+        
     }
 
     public String toString(){

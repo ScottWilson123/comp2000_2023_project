@@ -4,11 +4,11 @@ import java.util.Optional;
 public class Inventory implements InventoryStratergy{
     private ArrayList<ItemInterface> stock;
     private String searchBy;
-    private InventoryStratergy strat;
     private InventoryStratergy search;
     private InventoryStratergy searchItem;
-    private InventoryStratergy stratname;
-    private InventoryStratergy stratDesc;
+    private InventoryStratergy strat = new AllStratergy();
+    private InventoryStratergy stratname = new NameStratergy();
+    private InventoryStratergy stratDesc = new DescriptionStratergy();
 
     public Inventory() {
         stock = new ArrayList<>();
@@ -78,8 +78,10 @@ public class Inventory implements InventoryStratergy{
 
     public void setSearch(InventoryStratergy strat) {
         // You may wish to adjust this to facilitate the task 1 strategy pattern
-       
-        search = strat;
+         search = strat;
+   
+        System.out.println(search); 
+        searchStrat(search);
     }
 
     /**
@@ -92,26 +94,22 @@ public class Inventory implements InventoryStratergy{
 
     
 @Override
-    public ArrayList<ItemInterface> searchItems(InventoryStratergy search){
-        ArrayList<ItemInterface> result = new ArrayList<>(stock);
+    public void searchStrat(InventoryStratergy search){
         searchItem = search;
-        this.strat = new AllStratergy();
-        this.stratname = new NameStratergy();
-        this.stratDesc = new DescriptionStratergy();
-            
-        if(searchItem.equals(strat)){
-            strat = new AllStratergy();
-            System.out.println("help");
+        System.out.println(searchItem + " and " + strat);
+        if(searchItem.toString() == strat.toString()){
+            search = new AllStratergy();
+            System.out.println(strat + "lop");
             }
             else if(searchItem.equals(stratname)){
-            strat = new NameStratergy();
+            search = new NameStratergy();
                     System.out.println("help2");
             } else if(searchItem.equals(stratDesc)){
-            strat = new DescriptionStratergy();
+            search = new DescriptionStratergy();
                     System.out.println("help3");
             }
 
-        return result;
+        
         }
 
        public ArrayList<ItemInterface> searchItems(String searchTerm) {
