@@ -3,7 +3,7 @@ public class Player {
     private Inventory inventory;
     private double carryWeightCapacity;
     private Inventory storageView;
-    private InventoryStratergy strat = new NameStratergy();
+    private InventoryStratergy strat = new AllStratergy();
   
 
     public Player(String playerName, double carryCapacity, Inventory sInventory) {

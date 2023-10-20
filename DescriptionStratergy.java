@@ -5,9 +5,9 @@ public class DescriptionStratergy implements InventoryStratergy{
     ArrayList<ItemInterface> stock;
 
     @Override
-    public void searchStrat(InventoryStratergy search) {
+    public ArrayList<ItemInterface> searchStrat(InventoryStratergy search, String searchTerm) {
         stock = new ArrayList<>();
-        String term = "Description";
+        String term = searchTerm;
         ArrayList<ItemInterface> result = new ArrayList<>(stock);
 
         for (int i = 0; i < result.size(); i++) {
@@ -18,6 +18,7 @@ public class DescriptionStratergy implements InventoryStratergy{
             }
         }
        
+        return result;
     }
    
     public String toString(){

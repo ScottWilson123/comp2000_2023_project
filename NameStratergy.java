@@ -1,13 +1,13 @@
 import java.util.ArrayList;
 
 public class NameStratergy implements InventoryStratergy {
-
+    
     ArrayList<ItemInterface> stock;
 
     @Override
-    public void searchStrat(InventoryStratergy search) {
+    public ArrayList<ItemInterface> searchStrat(InventoryStratergy search, String searchTerm) {
         stock = new ArrayList<>();
-        String term = "All";
+        String term = searchTerm.toLowerCase();
         ArrayList<ItemInterface> result = new ArrayList<>(stock);
 
         for (int i = 0; i < result.size(); i++) {
@@ -17,7 +17,8 @@ public class NameStratergy implements InventoryStratergy {
                 i--;  // Go back to revisit current index on next run of loop
             }
         }
-        
+        System.out.println("Namestrat");
+        return result;
     }
 
     public String toString(){

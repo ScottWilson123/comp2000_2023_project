@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class AllStratergy implements InventoryStratergy {
     ArrayList<ItemInterface> stock;
     @Override
-    public void searchStrat(InventoryStratergy search) {
+    public ArrayList<ItemInterface> searchStrat(InventoryStratergy search, String searchTerm) {
         stock = new ArrayList<>();
         String term = "";
         ArrayList<ItemInterface> result = new ArrayList<>(stock);
@@ -17,7 +17,7 @@ public class AllStratergy implements InventoryStratergy {
             }
         }
       
-    
+        return result;
     }
    
         public String toString(){

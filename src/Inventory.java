@@ -79,9 +79,9 @@ public class Inventory implements InventoryStratergy{
     public void setSearch(InventoryStratergy strat) {
         // You may wish to adjust this to facilitate the task 1 strategy pattern
          search = strat;
-   
-        System.out.println(search); 
-        searchStrat(search);
+        
+         
+        //searchStrat(search, searchBy);
     }
 
     /**
@@ -92,58 +92,63 @@ public class Inventory implements InventoryStratergy{
      * @return a filtered instance copy of the items arraylist
      */
 
+  public ArrayList<ItemInterface> searchItems(String searchTerm) {
+    String term = searchTerm.toLowerCase();
+    ArrayList<ItemInterface> result = new ArrayList<>(stock);  // ArrayList copy
+
+    if (searchBy.equals("All")) {
+        for (int i = 0; i < result.size(); i++) {
+            ItemInterface curItem = result.get(i);
+            if (!curItem.getName().contains(term) && !curItem.getDescription().contains(term)) {
+                result.remove(i);
+                i--;  // Go back to revisit current index on next run of loop
+                
+            }
+        }
+    } else if (searchBy.equals("Name")) {
+        for (int i = 0; i < result.size(); i++) {
+            ItemInterface curItem = result.get(i);
+            if (!curItem.getName().contains(term)) {
+                result.remove(i);
+                i--;  // Go back to revisit current index on next run of loop
+            }
+        }
+    } else if (searchBy.equals("Description")) {
+        for (int i = 0; i < result.size(); i++) {
+            ItemInterface curItem = result.get(i);
+            if (!curItem.getDescription().contains(term)) {
+                result.remove(i);
+                i--;  // Go back to revisit current index on next run of loop
+            }
+        }
+    }
+    return result;
+}
+    
+
     
 @Override
-    public void searchStrat(InventoryStratergy search){
+    public ArrayList<ItemInterface> searchStrat(InventoryStratergy search, String searchTerm){
         searchItem = search;
-        System.out.println(searchItem + " and " + strat);
+        String term = searchTerm.toLowerCase();
+        ArrayList<ItemInterface> result = new ArrayList<>(stock); 
         if(searchItem.toString() == strat.toString()){
             search = new AllStratergy();
-            System.out.println(strat + "lop");
+            return result;
             }
-            else if(searchItem.equals(stratname)){
+            else if(searchItem.toString() == stratname.toString()){
             search = new NameStratergy();
-                    System.out.println("help2");
-            } else if(searchItem.equals(stratDesc)){
+                    return result;
+            } else if(searchItem.toString() == stratDesc.toString()){
             search = new DescriptionStratergy();
-                    System.out.println("help3");
+                   return result;
             }
 
+            return result;
         
         }
 
-       public ArrayList<ItemInterface> searchItems(String searchTerm) {
-        String term = searchTerm.toLowerCase();
-        ArrayList<ItemInterface> result = new ArrayList<>(stock);  // ArrayList copy
-
-        if (searchBy.equals("All")) {
-            for (int i = 0; i < result.size(); i++) {
-                ItemInterface curItem = result.get(i);
-                if (!curItem.getName().contains(term) && !curItem.getDescription().contains(term)) {
-                    result.remove(i);
-                    i--;  // Go back to revisit current index on next run of loop
-                    
-                }
-            }
-        } else if (searchBy.equals("Name")) {
-            for (int i = 0; i < result.size(); i++) {
-                ItemInterface curItem = result.get(i);
-                if (!curItem.getName().contains(term)) {
-                    result.remove(i);
-                    i--;  // Go back to revisit current index on next run of loop
-                }
-            }
-        } else if (searchBy.equals("Description")) {
-            for (int i = 0; i < result.size(); i++) {
-                ItemInterface curItem = result.get(i);
-                if (!curItem.getDescription().contains(term)) {
-                    result.remove(i);
-                    i--;  // Go back to revisit current index on next run of loop
-                }
-            }
-        }
-        return result;
-    }
+     
  
 
     
